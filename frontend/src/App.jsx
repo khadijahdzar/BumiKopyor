@@ -116,12 +116,12 @@ const testimonials = [
     quote: 'Sekarang hasil panen lebih pasti. Pembeli dan harga jelas sejak awal.',
   },
   {
-    name: 'Pak Pram Ono',
+    name: 'Pak Pram',
     age: '28 Th',
     quote: 'Bergabung membuat saya bangga bertani kopyor dan membangun usaha di desa.',
   },
   {
-    name: 'Bu Vera',
+    name: 'Pak Ono',
     age: '24 Th',
     quote: 'Kopyor sampai segar dan kualitasnya konsisten. Pelanggan saya suka!',
   },
