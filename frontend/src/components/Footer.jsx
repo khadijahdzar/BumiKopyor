@@ -52,7 +52,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white">Tentang BumiKopyor</h3>
+            <h3 className="text-sm font-bold text-white">Tentang Kami</h3>
             <ul className="mt-5 space-y-3 text-xs text-white/60">
               <li>
                 <Link className="hover:text-white" to="/#tentang">

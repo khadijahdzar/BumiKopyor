@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  ArrowDownRight,
   ArrowRight,
   BadgeCheck,
   Box,
@@ -13,14 +12,11 @@ import {
   MapPin,
   MessageCircle,
   Menu,
-  PackageCheck,
   Quote,
-  ShoppingBasket,
   ShoppingCart,
   Snowflake,
   Sprout,
   Star,
-  Truck,
   UsersRound,
   WalletCards,
   X,
@@ -103,13 +99,6 @@ const standards = [
   },
 ]
 
-const steps = [
-  { icon: ShoppingBasket, title: 'Pilih Produk & Kebutuhan', note: 'Belanja sesuai kebutuhan' },
-  { icon: Sprout, title: 'Panen Sesuai Pesanan', note: 'Langsung dari kebun mitra' },
-  { icon: PackageCheck, title: 'Quality Control & Packing', note: 'Diperiksa dan dikemas aman' },
-  { icon: Truck, title: 'Pengiriman Kilat Bergaransi', note: 'Dikirim cepat, tetap segar' },
-]
-
 const testimonials = [
   {
     name: 'Ibu Dijah',
@@ -122,7 +111,7 @@ const testimonials = [
     quote: 'Bergabung membuat saya bangga bertani kopyor dan membangun usaha di desa.',
   },
   {
-    name: 'Pak Ono',
+    name: 'Pak Eza',
     age: '24 Th',
     quote: 'Kopyor sampai segar dan kualitasnya konsisten. Pelanggan saya suka!',
   },
@@ -412,7 +401,7 @@ function HomePage() {
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-bold text-white">Tentang BumiKopyor</h3>
+              <h3 className="text-sm font-bold text-white">Tentang Kami</h3>
               <ul className="mt-5 space-y-3 text-xs text-white/60">
                 <li><a className="hover:text-white" href="#tentang">Kisah Kami & Petani</a></li><li><a className="hover:text-white" href="#tentang">Sertifikasi Mutu Kopyor</a></li><li><a className="hover:text-white" href="#tentang">Dampak & Rantai Pasok</a></li><li><a className="hover:text-white" href="#mitra">Karir & Kemitraan</a></li>
               </ul>

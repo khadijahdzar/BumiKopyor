@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Leaf, Menu, ShoppingCart, User, X } from 'lucide-react'
+import { Menu, ShoppingCart, User, X } from 'lucide-react'
 
 const navItems = [
   { to: '/', label: 'Beranda', end: true },
@@ -16,17 +16,11 @@ export default function Header({ cartCount = 0 }) {
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="BumiKopyor beranda">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EBF3EE]">
-            <Leaf className="h-5 w-5 text-[#14452B]" />
-          </span>
-          <span className="leading-tight">
-            <span className="block text-base font-bold tracking-tight text-[#113B24] sm:text-lg">
-              BumiKopyor
-            </span>
-            <span className="hidden text-[10px] text-gray-500 sm:block">
-              Platform Petani Kopyor Nusantara
-            </span>
-          </span>
+          <img
+            src="/assets/logobumikopyor.png"
+            alt="BumiKopyor Logo"
+            className="h-9 w-auto max-w-[160px] object-contain sm:h-10"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
