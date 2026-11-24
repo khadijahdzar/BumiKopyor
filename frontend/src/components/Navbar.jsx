@@ -17,7 +17,7 @@ const NAV = [
 export default function Navbar({ cartCount = 0 }) {
   const pillRef = useRef(null)
   const location = useLocation()
-  const { user, isAdmin, login, logout } = useAuth()
+  const { user, isAdmin, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function Navbar({ cartCount = 0 }) {
           </div>
           <div className="mx-1 hidden h-6 w-px bg-[#14452B]/15 sm:block" />
           <div className="flex items-center gap-1.5 pl-1">
-            <Link to="/produk" className="relative flex h-9 w-9 items-center justify-center rounded-full text-[#113B24] transition hover:bg-[#14452B]/10" aria-label={`Keranjang, ${cartCount} item`}>
+            <Link to="/keranjang" className="relative flex h-9 w-9 items-center justify-center rounded-full text-[#113B24] transition hover:bg-[#14452B]/10" aria-label={`Keranjang, ${cartCount} item`}>
               <ShoppingCart className="h-4 w-4" />
               {cartCount > 0 && (
                 <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#d89536] px-1 text-[10px] font-bold text-white">
@@ -100,8 +100,8 @@ export default function Navbar({ cartCount = 0 }) {
               </div>
             ) : (
               <div className="flex items-center gap-1">
-                <button type="button" onClick={() => login('user')} className="rounded-full px-3 py-1.5 text-xs font-semibold text-gray-600 hover:bg-[#14452B]/08">Masuk</button>
-                <button type="button" onClick={() => login('admin')} className="rounded-full bg-[#14452B] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-[#113B24]">Demo Admin</button>
+                <Link to="/masuk" className="rounded-full px-3 py-1.5 text-xs font-semibold text-gray-600 hover:bg-[#14452B]/08">Masuk</Link>
+                <Link to="/masuk" className="rounded-full bg-[#14452B] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-[#113B24]">Login</Link>
               </div>
             )}
           </div>
@@ -114,7 +114,7 @@ export default function Navbar({ cartCount = 0 }) {
           <span className="text-sm font-bold text-[#113B24]">BumiKopyor</span>
         </Link>
         <div className="flex items-center gap-1">
-          <Link to="/produk" className="relative flex h-9 w-9 items-center justify-center rounded-full text-[#113B24]" aria-label="Keranjang">
+          <Link to="/keranjang" className="relative flex h-9 w-9 items-center justify-center rounded-full text-[#113B24]" aria-label="Keranjang">
             <ShoppingCart className="h-5 w-5" />
             {cartCount > 0 && (
               <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#d89536] text-[10px] font-bold text-white">{cartCount}</span>
@@ -123,13 +123,12 @@ export default function Navbar({ cartCount = 0 }) {
           {user ? (
             <button type="button" onClick={logout} className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500" aria-label="Keluar"><LogOut className="h-4 w-4" /></button>
           ) : (
-            <button type="button" onClick={() => setMenuOpen((v) => !v)} className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EBF3EE] text-[#14452B]" aria-label="Akun"><User className="h-4 w-4" /></button>
+            <Link to="/masuk" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EBF3EE] text-[#14452B]" aria-label="Masuk"><User className="h-4 w-4" /></Link>
           )}
         </div>
         {menuOpen && !user && (
           <div className="absolute right-3 top-14 z-50 w-44 overflow-hidden rounded-2xl border border-gray-100 bg-white py-2 shadow-xl">
-            <button type="button" className="block w-full px-4 py-2.5 text-left text-sm font-medium text-gray-700 hover:bg-[#F3F7F4]" onClick={() => { login('user'); setMenuOpen(false) }}>Masuk sebagai User</button>
-            <button type="button" className="block w-full px-4 py-2.5 text-left text-sm font-medium text-[#14452B] hover:bg-[#F3F7F4]" onClick={() => { login('admin'); setMenuOpen(false) }}>Demo Admin</button>
+            <Link to="/masuk" className="block w-full px-4 py-2.5 text-left text-sm font-medium text-gray-700 hover:bg-[#F3F7F4]" onClick={() => setMenuOpen(false)}>Masuk / Login</Link>
           </div>
         )}
       </header>
