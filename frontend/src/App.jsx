@@ -9,6 +9,7 @@ import EdukasiPage from './pages/EdukasiPage'
 import AdminPage from './pages/AdminPage'
 import LoginPage from './pages/LoginPage'
 import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
 import './App.css'
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/keranjang" element={<CartPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

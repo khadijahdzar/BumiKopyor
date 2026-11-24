@@ -10,13 +10,12 @@ export default function Layout() {
   const { cartCount, addToCart } = useCart()
 
   const handleAddToCart = (product) => {
-    if (product) addToCart(product)
-    else addToCart({ id: Date.now(), name: 'Item', price: 0, unit: '', quantity: 1 })
+    if (product?.id != null) addToCart(product)
   }
 
   return (
     <div className="min-h-screen bg-[#F7F9F6] text-[#111827]">
-      <Navbar cartCount={cartCount} />
+      <Navbar />
       <main className="pt-14 md:pt-24">
         <Outlet context={{ cartCount, handleAddToCart }} />
       </main>
