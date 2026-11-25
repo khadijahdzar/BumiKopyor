@@ -172,8 +172,18 @@ export default function CheckoutPage() {
             <ul className="divide-y divide-gray-50">
               {items.map((item) => (
                 <li key={item.id} className="flex gap-3 px-4 py-3 sm:gap-4 sm:px-5 sm:py-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#dce9df] text-[8px] font-medium text-gray-500 sm:h-14 sm:w-14 sm:text-[9px]">
-                    {(item.imageLabel || item.name).slice(0, 14)}
+                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#dce9df] sm:h-14 sm:w-14">
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-center text-[8px] font-medium text-gray-500 sm:text-[9px]">
+                        {(item.imageLabel || item.name).slice(0, 14)}
+                      </div>
+                    )}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-gray-900 line-clamp-1">{item.name}</p>

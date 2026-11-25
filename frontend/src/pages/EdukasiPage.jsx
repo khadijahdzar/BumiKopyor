@@ -29,21 +29,33 @@ export default function EdukasiPage() {
             whileHover={{ y: -4 }}
             className="group flex flex-col rounded-3xl border border-gray-100 bg-white shadow-sm transition hover:border-[#14452B]/15 hover:shadow-md"
           >
-            <Link to={`/edukasi/${a.slug}`} className="flex h-full flex-col p-6">
-              <div className="flex items-center gap-2 text-[11px] font-semibold text-gray-500">
-                <span className="rounded-full bg-[#EBF3EE] px-2.5 py-1 text-[#14452B]">{a.tag}</span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {a.read}
+            <Link to={`/edukasi/${a.slug}`} className="flex h-full flex-col overflow-hidden">
+              {a.image && (
+                <div className="aspect-[16/9] overflow-hidden rounded-t-3xl bg-[#EBF3EE]">
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div className="flex flex-1 flex-col p-6">
+                <div className="flex items-center gap-2 text-[11px] font-semibold text-gray-500">
+                  <span className="rounded-full bg-[#EBF3EE] px-2.5 py-1 text-[#14452B]">{a.tag}</span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {a.read}
+                  </span>
+                </div>
+                <h3 className="mt-3 text-base font-bold leading-snug text-gray-900 group-hover:text-[#14452B]">
+                  {a.title}
+                </h3>
+                <p className="mt-2 flex-1 text-xs leading-relaxed text-gray-500">{a.excerpt}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#14452B]">
+                  Baca selengkapnya <ChevronRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                 </span>
               </div>
-              <h3 className="mt-3 text-base font-bold leading-snug text-gray-900 group-hover:text-[#14452B]">
-                {a.title}
-              </h3>
-              <p className="mt-2 flex-1 text-xs leading-relaxed text-gray-500">{a.excerpt}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#14452B]">
-                Baca selengkapnya <ChevronRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-              </span>
             </Link>
           </motion.article>
         ))}

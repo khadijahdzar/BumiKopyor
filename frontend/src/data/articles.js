@@ -6,6 +6,7 @@ export const articles = [
     read: '5 menit',
     date: '18 November 2026',
     author: 'Tim Kurasi Mutu BumiKopyor',
+    image: '/assets/edukasi-kopyor-asli.jpg',
     excerpt: 'Tanda fisik, suara, dan tekstur daging yang membedakan kelapa kopyor premium.',
     highlights: [
       'Suara kocokan kelapa kopyor asli lebih berat, tumpul, dan tidak nyaring seperti air penuh.',
@@ -48,6 +49,7 @@ export const articles = [
     read: '7 menit',
     date: '14 November 2026',
     author: 'Divisi Logistik & Pasca Panen',
+    image: '/assets/edukasi-rantai-dingin.jpg',
     excerpt: 'Praktik penanganan pasca panen agar kopyor tetap premium saat sampai di meja.',
     highlights: [
       'Kelapa kopyor memiliki kadar gula dan lemak alami tinggi sehingga rentan fermentasi di suhu ruang.',
@@ -89,6 +91,7 @@ export const articles = [
     read: '10 menit',
     date: '09 November 2026',
     author: 'Pendamping Agronomi BumiKopyor',
+    image: '/assets/edukasi-budidaya.webp',
     excerpt: 'Pengenalan varietas lokal Pati dan tips merawat pohon agar panen stabil.',
     highlights: [
       'Kelapa Kopyor Genjah (hijau, kuning, dan cokelat) mulai berbuah pada umur 3–4 tahun dengan postur pohon rendah.',
@@ -130,6 +133,7 @@ export const articles = [
     read: '8 menit',
     date: '03 November 2026',
     author: 'Tim Kemitraan UMKM BumiKopyor',
+    image: '/assets/edukasi-peluang-umkm.jpg',
     excerpt: 'Ide produk, margin, dan tips memulai usaha es kopyor atau VCO skala kecil.',
     highlights: [
       'Satu pack daging kopyor beku 500g dapat diolah menjadi 8–10 porsi minuman premium dengan margin sehat.',

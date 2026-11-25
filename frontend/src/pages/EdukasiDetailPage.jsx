@@ -106,6 +106,16 @@ export default function EdukasiDetailPage() {
           </div>
         </div>
 
+        {article.image && (
+          <div className="mt-6 aspect-[16/9] overflow-hidden rounded-2xl bg-[#EBF3EE]">
+            <img
+              src={article.image}
+              alt={article.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        )}
+
         {/* Highlights Callout */}
         {article.highlights?.length > 0 && (
           <div className="mt-7 rounded-2xl border border-[#14452B]/15 bg-[#EBF3EE]/60 p-5">

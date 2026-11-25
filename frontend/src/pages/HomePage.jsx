@@ -121,9 +121,11 @@ export default function HomePage() {
             className="relative mx-auto w-full max-w-[520px]"
           >
             <div className="aspect-[1.05/1] overflow-hidden rounded-[28px] bg-gradient-to-br from-[#eef2eb] via-[#dce9df] to-[#c5d9c8] shadow-2xl shadow-[#14452B]/10">
-              <div className="flex h-full items-center justify-center p-8 text-center text-sm font-medium text-gray-500">
-                Foto Kelapa Kopyor Belah Segar
-              </div>
+              <img
+                src="/assets/hero-kopyor.jpeg"
+                alt="Kelapa Kopyor Belah Segar Asli Pati"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-2 text-xs font-bold text-[#14452B] shadow-lg backdrop-blur sm:left-6 sm:top-6">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#EBF3EE]">

@@ -118,8 +118,18 @@ export default function CartPage() {
                   className="rounded-2xl border border-gray-100 bg-white p-3 shadow-sm sm:p-4"
                 >
                   <div className="flex gap-3 sm:gap-4">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#dce9df] text-center text-[9px] font-medium text-gray-500 sm:h-20 sm:w-20 sm:rounded-2xl sm:text-[10px]">
-                      {(item.imageLabel || item.name).slice(0, 18)}
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#dce9df] sm:h-20 sm:w-20 sm:rounded-2xl">
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-center text-[9px] font-medium text-gray-500 sm:text-[10px]">
+                          {(item.imageLabel || item.name).slice(0, 18)}
+                        </div>
+                      )}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-2">

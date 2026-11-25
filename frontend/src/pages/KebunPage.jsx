@@ -27,6 +27,7 @@ const FARMS = [
     phone: '+62 821-3400-8512',
     focus: 'Kelapa kopyor segar Grade A & daging kopyor',
     trees: 520,
+    image: '/assets/kebun-kenanti.jpg',
     tags: ['Sentra Produksi', 'Siap Kunjung'],
     filter: 'Sentra Produksi',
   },
@@ -43,6 +44,7 @@ const FARMS = [
     phone: '+62 812-3456-7890',
     focus: 'Bibit kopyor genjah & pendampingan kebun',
     trees: 380,
+    image: '/assets/kebun-beringin-dewantara.jpg',
     tags: ['Bibit & Perbibitan'],
     filter: 'Bibit & Perbibitan',
   },
@@ -59,6 +61,7 @@ const FARMS = [
     phone: '+62 813-2211-4455',
     focus: 'Greenhouse & pembibitan modern',
     trees: 210,
+    image: '/assets/kebun-greenhouse-nusantara.jpg',
     tags: ['Wisata Edukasi'],
     filter: 'Wisata Edukasi',
   },
@@ -75,6 +78,7 @@ const FARMS = [
     phone: '+62 857-1111-2233',
     focus: 'Klaster petani & agrowisata kopyor',
     trees: 740,
+    image: '/assets/kebun-kampung-kopyor.jpg',
     tags: ['Sentra Produksi', 'Wisata Edukasi'],
     filter: 'Sentra Produksi',
   },
@@ -91,6 +95,7 @@ const FARMS = [
     phone: '+62 822-9988-7766',
     focus: 'Kopyor potong langsung & olahan lokal',
     trees: 290,
+    image: '/assets/kebun-agro-potensi.jpg',
     tags: ['Kopyor Potong Langsung'],
     filter: 'Kopyor Potong Langsung',
   },
@@ -271,9 +276,19 @@ export default function KebunPage() {
             {selected && (
               <div className="absolute bottom-3 left-3 right-3 z-[500] rounded-2xl border border-white/80 bg-white/95 p-3 shadow-xl backdrop-blur sm:bottom-4 sm:left-4 sm:right-4 sm:p-4">
                 <div className="flex gap-3">
-                  <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#c5d9c8] text-center text-[9px] font-semibold text-[#14452B] sm:h-16 sm:w-16">
-                    <Trees className="h-5 w-5" />
-                    <span className="mt-0.5">{selected.trees} phn</span>
+                  <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#c5d9c8] sm:h-16 sm:w-16">
+                    {selected.image ? (
+                      <img
+                        src={selected.image}
+                        alt={selected.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full flex-col items-center justify-center text-center text-[9px] font-semibold text-[#14452B]">
+                        <Trees className="h-5 w-5" />
+                        <span className="mt-0.5">{selected.trees} phn</span>
+                      </div>
+                    )}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-bold text-[#113B24]">{selected.name}</p>

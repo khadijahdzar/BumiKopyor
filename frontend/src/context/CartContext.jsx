@@ -21,6 +21,7 @@ export function CartProvider({ children }) {
           name: product.name,
           price: product.price,
           unit: product.unit,
+          image: product.image || null,
           imageLabel: product.imageLabel || product.name,
           farmer: product.farmer,
           quantity: qty,

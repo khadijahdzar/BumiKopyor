@@ -27,6 +27,7 @@ export default function ProductCard({ product, index = 0, onAddToCart }) {
     farmer,
     location,
     stockStatus,
+    image,
     imageLabel,
   } = product
 
@@ -49,9 +50,18 @@ export default function ProductCard({ product, index = 0, onAddToCart }) {
       className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_4px_24px_rgba(17,59,36,0.04)]"
     >
       <Link to={`/produk/${id}`} className="relative block aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#eef2eb] to-[#dce9df]">
-        <div className="flex h-full w-full items-center justify-center p-6 text-center text-sm font-medium text-gray-500 transition duration-300 group-hover:scale-105">
-          {imageLabel || name}
-        </div>
+        {image ? (
+          <img
+            src={image}
+            alt={name}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center p-6 text-center text-sm font-medium text-gray-500 transition duration-300 group-hover:scale-105">
+            {imageLabel || name}
+          </div>
+        )}
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           {badges.map((b) => (
             <span

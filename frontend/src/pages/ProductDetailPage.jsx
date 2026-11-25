@@ -176,17 +176,31 @@ function ProductDetailContent({ id }) {
           className="space-y-3"
         >
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-gray-100 bg-gradient-to-br from-[#eef2eb] via-[#dce9df] to-[#c5d9c8] shadow-sm">
-            <div className="flex h-full flex-col items-center justify-center p-8 text-center">
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-[#14452B] shadow-sm backdrop-blur">
-                <Leaf className="h-7 w-7" />
-              </span>
-              <p className="mt-4 text-lg font-bold text-[#113B24] sm:text-xl">
-                {currentGallery.label}
-              </p>
-              <p className="mt-2 max-w-sm text-xs leading-relaxed text-gray-600 sm:text-sm">
-                {currentGallery.caption}
-              </p>
-            </div>
+            {currentGallery.image || product.image ? (
+              <>
+                <img
+                  src={currentGallery.image || product.image}
+                  alt={currentGallery.label || product.name}
+                  className="h-full w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 pt-10 text-white">
+                  <p className="text-xs font-bold sm:text-sm">{currentGallery.label}</p>
+                  <p className="mt-0.5 text-[11px] text-white/85">{currentGallery.caption}</p>
+                </div>
+              </>
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center p-8 text-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-[#14452B] shadow-sm backdrop-blur">
+                  <Leaf className="h-7 w-7" />
+                </span>
+                <p className="mt-4 text-lg font-bold text-[#113B24] sm:text-xl">
+                  {currentGallery.label}
+                </p>
+                <p className="mt-2 max-w-sm text-xs leading-relaxed text-gray-600 sm:text-sm">
+                  {currentGallery.caption}
+                </p>
+              </div>
+            )}
 
             <div className="absolute left-4 top-4 flex flex-wrap gap-1.5">
               {product.badges?.map((b) => (
@@ -200,7 +214,7 @@ function ProductDetailContent({ id }) {
             </div>
 
             {isPreorder && (
-              <span className="absolute bottom-4 left-4 rounded-full bg-[#113B24]/90 px-3 py-1 text-[11px] font-bold text-white">
+              <span className="absolute right-4 top-4 rounded-full bg-[#113B24]/90 px-3 py-1 text-[11px] font-bold text-white">
                 Pre-Order · {product.unitDetail}
               </span>
             )}
@@ -213,16 +227,25 @@ function ProductDetailContent({ id }) {
                   key={item.label}
                   type="button"
                   onClick={() => setActiveSlide(idx)}
-                  className={`rounded-2xl border p-3 text-left transition ${
+                  className={`flex items-center gap-2.5 overflow-hidden rounded-2xl border p-2 text-left transition ${
                     activeSlide === idx
-                      ? 'border-[#14452B] bg-[#EBF3EE]/70 shadow-xs'
+                      ? 'border-[#14452B] bg-[#EBF3EE]/70 shadow-xs ring-1 ring-[#14452B]/20'
                       : 'border-gray-100 bg-white hover:border-gray-200 hover:bg-[#F7F9F6]'
                   }`}
                 >
-                  <p className="line-clamp-1 text-[11px] font-bold text-[#113B24]">
-                    {idx + 1}. {item.label}
-                  </p>
-                  <p className="mt-0.5 line-clamp-1 text-[10px] text-gray-500">{item.caption}</p>
+                  {(item.image || product.image) && (
+                    <img
+                      src={item.image || product.image}
+                      alt={item.label}
+                      className="h-11 w-11 shrink-0 rounded-xl object-cover sm:h-12 sm:w-12"
+                    />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="line-clamp-1 text-[11px] font-bold text-[#113B24]">
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 line-clamp-1 text-[10px] text-gray-500">{item.caption}</p>
+                  </div>
                 </button>
               ))}
             </div>
