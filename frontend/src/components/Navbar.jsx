@@ -125,10 +125,10 @@ export default function Navbar() {
                   Masuk
                 </Link>
                 <Link
-                  to="/masuk"
+                  to="/daftar"
                   className="rounded-full bg-[#14452B] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-[#113B24]"
                 >
-                  Login
+                  Daftar
                 </Link>
               </div>
             )}

@@ -11,6 +11,7 @@ import {
   Filter,
 } from 'lucide-react'
 import WordReveal from '../components/WordReveal'
+import KebunMap from '../components/KebunMap'
 
 const FARMS = [
   {
@@ -21,6 +22,8 @@ const FARMS = [
     reviews: 128,
     location: 'Dukuhseti, Pati',
     address: 'Jl. Raya Dukuhseti KM 3, Pati',
+    lat: -6.4335,
+    lng: 111.0185,
     phone: '+62 821-3400-8512',
     focus: 'Kelapa kopyor segar Grade A & daging kopyor',
     trees: 520,
@@ -35,10 +38,12 @@ const FARMS = [
     reviews: 64,
     location: 'Margoyoso, Pati',
     address: 'Dusun Beringin, Margoyoso',
+    lat: -6.6178,
+    lng: 111.0956,
     phone: '+62 812-3456-7890',
     focus: 'Bibit kopyor genjah & pendampingan kebun',
     trees: 380,
-    tags: 'Bibit & Perbibitan',
+    tags: ['Bibit & Perbibitan'],
     filter: 'Bibit & Perbibitan',
   },
   {
@@ -49,6 +54,8 @@ const FARMS = [
     reviews: 41,
     location: 'Tayu, Pati',
     address: 'Kawasan Greenhouse Tayu',
+    lat: -6.5396,
+    lng: 111.0531,
     phone: '+62 813-2211-4455',
     focus: 'Greenhouse & pembibitan modern',
     trees: 210,
@@ -63,6 +70,8 @@ const FARMS = [
     reviews: 89,
     location: 'Gembong, Pati',
     address: 'Desa Gembong RT 02',
+    lat: -6.6967,
+    lng: 110.9565,
     phone: '+62 857-1111-2233',
     focus: 'Klaster petani & agrowisata kopyor',
     trees: 740,
@@ -77,6 +86,8 @@ const FARMS = [
     reviews: 33,
     location: 'Cluwak, Pati',
     address: 'Jl. Raya Cluwak–Pati',
+    lat: -6.5172,
+    lng: 110.9412,
     phone: '+62 822-9988-7766',
     focus: 'Kopyor potong langsung & olahan lokal',
     trees: 290,
@@ -253,77 +264,44 @@ export default function KebunPage() {
 
         {/* Map panel */}
         <div className="flex flex-col gap-3">
-          <div className="relative min-h-[280px] flex-1 overflow-hidden rounded-3xl border border-gray-100 bg-[#e8efe9] shadow-sm sm:min-h-[360px]">
-            {/* Decorative map-like background */}
-            <div
-              className="absolute inset-0 opacity-90"
-              style={{
-                background:
-                  'radial-gradient(ellipse at 40% 35%, #c5d9c8 0%, transparent 50%), radial-gradient(ellipse at 70% 70%, #b8d0bc 0%, transparent 40%), linear-gradient(160deg, #dce9df 0%, #eef2eb 45%, #d4e4d8 100%)',
-              }}
-            />
-            <svg className="absolute inset-0 h-full w-full opacity-30" aria-hidden>
-              <path
-                d="M20 80 Q80 40 140 90 T280 70 T400 120"
-                fill="none"
-                stroke="#14452B"
-                strokeWidth="1.5"
-                strokeDasharray="6 4"
-              />
-              <path
-                d="M40 200 Q120 160 200 210 T360 180"
-                fill="none"
-                stroke="#14452B"
-                strokeWidth="1"
-                strokeDasharray="4 6"
-              />
-            </svg>
-            {/* Pins */}
-            {FARMS.slice(0, 5).map((f, idx) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setSelectedId(f.id)}
-                className={`absolute flex h-9 w-9 -translate-x-1/2 -translate-y-full items-center justify-center rounded-full border-2 border-white shadow-lg transition ${
-                  selected?.id === f.id ? 'scale-110 bg-[#14452B] text-white' : 'bg-white text-[#14452B]'
-                }`}
-                style={{
-                  left: `${22 + idx * 16}%`,
-                  top: `${28 + (idx % 3) * 18}%`,
-                }}
-                aria-label={f.name}
-              >
-                <MapPin className="h-4 w-4" fill={selected?.id === f.id ? 'currentColor' : 'none'} />
-              </button>
-            ))}
+          <div className="relative z-0 isolate min-h-[320px] flex-1 overflow-hidden rounded-3xl border border-gray-100 bg-[#e8efe9] shadow-sm sm:min-h-[400px]">
+            <KebunMap farms={filtered.length > 0 ? filtered : FARMS} selected={selected} onSelect={setSelectedId} />
 
             {/* Selected farm floating card */}
             {selected && (
-              <div className="absolute bottom-3 left-3 right-3 rounded-2xl border border-white/80 bg-white/95 p-3 shadow-xl backdrop-blur sm:bottom-4 sm:left-4 sm:right-4 sm:p-4">
+              <div className="absolute bottom-3 left-3 right-3 z-[500] rounded-2xl border border-white/80 bg-white/95 p-3 shadow-xl backdrop-blur sm:bottom-4 sm:left-4 sm:right-4 sm:p-4">
                 <div className="flex gap-3">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#c5d9c8] text-[9px] font-medium text-gray-500 sm:h-16 sm:w-16">
-                    Foto
+                  <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-[#eef2eb] to-[#c5d9c8] text-center text-[9px] font-semibold text-[#14452B] sm:h-16 sm:w-16">
+                    <Trees className="h-5 w-5" />
+                    <span className="mt-0.5">{selected.trees} phn</span>
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-bold text-[#113B24]">{selected.name}</p>
                     <p className="mt-0.5 flex items-center gap-1 text-[11px] text-gray-500">
-                      <MapPin className="h-3 w-3 text-[#14452B]" />
-                      {selected.location}
+                      <MapPin className="h-3 w-3 shrink-0 text-[#14452B]" />
+                      <span className="truncate">
+                        {selected.address}, {selected.location}
+                      </span>
                     </p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       <a
                         href={`https://wa.me/${selected.phone.replace(/\D/g, '')}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 rounded-full bg-[#14452B] px-2.5 py-1 text-[10px] font-semibold text-white"
+                        className="inline-flex items-center gap-1 rounded-full bg-[#14452B] px-2.5 py-1 text-[10px] font-semibold text-white transition hover:bg-[#113B24]"
                       >
                         <Phone className="h-3 w-3" />
                         Hubungi
                       </a>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-[#EBF3EE] px-2.5 py-1 text-[10px] font-semibold text-[#14452B]">
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${selected.lat},${selected.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full bg-[#EBF3EE] px-2.5 py-1 text-[10px] font-semibold text-[#14452B] transition hover:bg-[#dce9df]"
+                      >
                         <Navigation className="h-3 w-3" />
                         Petunjuk Arah
-                      </span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -333,7 +311,7 @@ export default function KebunPage() {
 
           <div className="flex flex-wrap gap-2 text-[10px] text-gray-500 sm:text-[11px]">
             <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 ring-1 ring-gray-100">
-              <span className="h-2 w-2 rounded-full bg-[#14452B]" /> Sentra terverifikasi
+              <span className="h-2 w-2 rounded-full bg-[#14452B]" /> Sentra terpilih / terverifikasi
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 ring-1 ring-gray-100">
               <span className="h-2 w-2 rounded-full bg-[#d89536]" /> Wisata edukasi

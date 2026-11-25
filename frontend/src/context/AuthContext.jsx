@@ -24,6 +24,27 @@ export function AuthProvider({ children }) {
     setUser(DEMO_USERS[role] || DEMO_USERS.user)
   }, [])
 
+  const loginWithGoogle = useCallback((profile = {}) => {
+    setUser({
+      id: profile.id || `g-${Date.now()}`,
+      name: profile.name || 'Pengguna Google',
+      email: profile.email || 'pengguna@gmail.com',
+      role: 'user',
+      provider: 'google',
+      avatar: profile.avatar || null,
+    })
+  }, [])
+
+  const registerUser = useCallback(({ name, email }) => {
+    setUser({
+      id: `u-${Date.now()}`,
+      name: name?.trim() || 'Pengguna Baru',
+      email: email?.trim().toLowerCase() || 'user@bumikopyor.id',
+      role: 'user',
+      provider: 'email',
+    })
+  }, [])
+
   const logout = useCallback(() => {
     setUser(null)
   }, [])
@@ -35,9 +56,11 @@ export function AuthProvider({ children }) {
       isAdmin: user?.role === 'admin',
       isUser: user?.role === 'user',
       login,
+      loginWithGoogle,
+      registerUser,
       logout,
     }),
-    [user, login, logout],
+    [user, login, loginWithGoogle, registerUser, logout],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

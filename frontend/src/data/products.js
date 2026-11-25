@@ -7,6 +7,8 @@ export const products = [
     priceLabel: 'Harga Petani',
     unit: '/butir',
     unitDetail: 'Tersisa 45 butir',
+    stock: 45,
+    spec: 'Utuh kupas bersih · Bobot ±1,4–1,7 kg',
     rating: 4.9,
     reviews: 142,
     badges: [
@@ -20,6 +22,31 @@ export const products = [
     wishlist: false,
     stockStatus: 'available',
     imageLabel: 'Kelapa Kopyor Segar Belah',
+    gallery: [
+      { label: 'Kelapa Kopyor Segar Belah', caption: 'Tampilan belah segar — daging pulen tebal merata' },
+      { label: 'Seleksi Sensor Akustik', caption: 'Lolos uji ketuk & akustik tingkat kopyor >90%' },
+      { label: 'Kemasan Rantai Dingin', caption: 'Dikemas rapi dalam box berinsulasi suhu terjaga' },
+    ],
+    originStory:
+      'Dipetik langsung pada usia panen optimal 11 bulan dari pohon kelapa kopyor genjah di pesisir Dukuhseti, Pati. Setiap butir melewati inspeksi akustik dan sortir ketat agar rasio daging kopyornya tebal, harum, dan manis alami tanpa rekayasa.',
+    storageTips:
+      'Simpan di lemari pendingin (suhu 2–6°C) untuk menjaga kesegaran hingga 5–7 hari dalam kondisi utuh. Setelah dibelah, nikmati langsung dengan es serut, sirup cocopandan, atau gula aren cair dalam 24 jam.',
+    sampleReviews: [
+      {
+        id: 'r1',
+        author: 'Rina Kusuma',
+        rating: 5,
+        date: '18 Nov 2026',
+        comment: 'Daging kopyornya tebal banget dan pulen, airnya masih segar waktu sampai di Semarang!',
+      },
+      {
+        id: 'r2',
+        author: 'Hendra Wijaya',
+        rating: 5,
+        date: '12 Nov 2026',
+        comment: 'Packing aman sekali, 4 butir semuanya jadi kopyor asli tanpa ada yang zonk.',
+      },
+    ],
   },
   {
     id: 2,
@@ -29,6 +56,8 @@ export const products = [
     priceLabel: 'Kemasan 500g',
     unit: '/pack',
     unitDetail: 'Stok Melimpah',
+    stock: 120,
+    spec: 'Pouch vakum food-grade 500g · Suhu -18°C',
     rating: 5.0,
     reviews: 312,
     badges: [
@@ -42,6 +71,24 @@ export const products = [
     wishlist: false,
     stockStatus: 'available',
     imageLabel: 'Daging Kopyor Beku Vakum',
+    gallery: [
+      { label: 'Daging Kopyor Beku Vakum', caption: 'Kemasan vakum 500g higienis siap pakai' },
+      { label: 'Tekstur Murni Tanpa Es', caption: '100% daging kopyor kupas tanpa tambahan air atau gula' },
+      { label: 'Aplikasi HoReCa & Kafe', caption: 'Cocok untuk es kopyor, gelato, cake, dan dessert modern' },
+    ],
+    originStory:
+      'Dikerok secara higienis dari kelapa kopyor pilihan sentra Tayu, lalu dibekukan cepat (blast freezing -18°C) dalam kemasan vakum agar tekstur lembut dan aroma khas kopyor tetap terkunci selama berbulan-bulan.',
+    storageTips:
+      'Simpan di freezer (-18°C) dapat bertahan hingga 6 bulan. Sebelum diolah, cairkan (thawing) di chiller kulkas selama 4–6 jam agar tekstur serpihan daging tetap kenyal dan tidak berair.',
+    sampleReviews: [
+      {
+        id: 'r3',
+        author: 'Kafe Seduh Nusantara',
+        rating: 5,
+        date: '20 Nov 2026',
+        comment: 'Sudah repeat order berkali-kali untuk menu Es Kopyor Latte di kafe kami. Konsisten bersih & manis.',
+      },
+    ],
   },
   {
     id: 3,
@@ -51,6 +98,8 @@ export const products = [
     priceLabel: 'Siap Saji 350ml',
     unit: '/botol',
     unitDetail: 'Cold Bottled',
+    stock: 68,
+    spec: 'Botol PET segel 350ml · Tanpa pengawet',
     rating: 4.8,
     reviews: 89,
     badges: [{ label: 'Siap Minum', variant: 'cyan' }],
@@ -61,6 +110,24 @@ export const products = [
     wishlist: false,
     stockStatus: 'available',
     imageLabel: 'Es Kopyor Sirup Cocopandan',
+    gallery: [
+      { label: 'Es Kopyor Sirup Cocopandan', caption: 'Botol 350ml siap minum dengan daging kopyor melimpah' },
+      { label: 'Racikan Gula Alami', caption: 'Perpaduan sirup cocopandan & sentuhan gula aren Pati' },
+      { label: 'Produksi Harian UMKM', caption: 'Dibuat segar setiap pagi oleh mitra UMKM Margoyoso' },
+    ],
+    originStory:
+      'Diracik oleh mitra UMKM binaan di Margoyoso menggunakan daging kopyor segar panen pagi, dipadu sirup cocopandan rumahan dan air kelapa murni tanpa pemanis sintetis.',
+    storageTips:
+      'Sajikan dingin lebih nikmat. Simpan di kulkas suhu 2–4°C (tahan hingga 3 hari) atau di freezer hingga 2 minggu. Kocok perlahan sebelum diminum.',
+    sampleReviews: [
+      {
+        id: 'r4',
+        author: 'Nadia Putri',
+        rating: 5,
+        date: '15 Nov 2026',
+        comment: 'Manisnya pas nggak bikin enek, daging kopyornya banyak di tiap botol.',
+      },
+    ],
   },
   {
     id: 4,
@@ -70,6 +137,8 @@ export const products = [
     priceLabel: 'Kemasan 250ml',
     unit: '/botol',
     unitDetail: 'Asam Laurat 53%',
+    stock: 34,
+    spec: 'Botol kaca amber/bening 250ml · Cold Pressed',
     rating: 4.9,
     reviews: 64,
     badges: [
@@ -83,6 +152,24 @@ export const products = [
     wishlist: false,
     stockStatus: 'available',
     imageLabel: 'VCO Extra Virgin 250ml',
+    gallery: [
+      { label: 'VCO Extra Virgin 250ml', caption: 'Minyak kelapa murni jernih hasil fermentasi dingin' },
+      { label: 'Uji Kadar Asam Laurat 53%', caption: 'Bebas pemutih, tanpa pemanasan berlebih, aroma lembut' },
+      { label: 'Multiguna Kesehatan & Kulit', caption: 'Aman dikonsumsi langsung, MPASI, hingga perawatan rambut' },
+    ],
+    originStory:
+      'Diproduksi oleh Koperasi Makmur Gembong dari santan kelapa segar pilihan menggunakan metode pemisahan dingin (cold-pressed & natural fermentation), mempertahankan antioksidan polifenol serta 53% asam laurat alami.',
+    storageTips:
+      'Simpan di suhu ruang sejuk dan terhindar dari sinar matahari langsung. Jika membeku pada suhu di bawah 24°C, cukup rendam botol sejenak di air hangat—kualitas dan khasiatnya tetap terjaga.',
+    sampleReviews: [
+      {
+        id: 'r5',
+        author: 'Dr. Aris Munandar',
+        rating: 5,
+        date: '19 Nov 2026',
+        comment: 'VCO-nya bening kristal, tidak tengik, aromanya segar ringan. Sangat cocok untuk konsumsi harian.',
+      },
+    ],
   },
   {
     id: 5,
@@ -92,6 +179,8 @@ export const products = [
     priceLabel: 'Varietas Khusus',
     unit: '/butir',
     unitDetail: 'Panen 3 Hari',
+    stock: 18,
+    spec: 'Varietas Wulung langka · Garansi 100% kopyor',
     rating: 4.9,
     reviews: 42,
     badges: [
@@ -105,6 +194,24 @@ export const products = [
     wishlist: false,
     stockStatus: 'preorder',
     imageLabel: 'Kelapa Kopyor Wulung Kulit Merah',
+    gallery: [
+      { label: 'Kelapa Kopyor Wulung Kulit Merah', caption: 'Ciri sabut merah muda keunguan khas kelapa wulung' },
+      { label: 'Aroma & Khasiat Herbal', caption: 'Kaya mineral alami dengan daging ekstra lembut' },
+      { label: 'Panen Terjadwal 3 Hari', caption: 'Dipetik khusus sesuai antrean pre-order kebun Tayu' },
+    ],
+    originStory:
+      'Kelapa Kopyor Wulung adalah varietas langka dari kebun Pak Toni di Tayu dengan warna serabut kemerahan saat dikupas. Dipercaya memiliki kandungan antioksidan lebih tinggi dan cita rasa gurih-manis yang khas.',
+    storageTips:
+      'Karena dipetik berdasarkan jadwal panen 3 harian, segera masukkan ke chiller begitu paket diterima. Paling nikmat disantap dingin tanpa tambahan pemanis agar rasa asli wulung terasa.',
+    sampleReviews: [
+      {
+        id: 'r6',
+        author: 'Bambang Pratama',
+        rating: 5,
+        date: '08 Nov 2026',
+        comment: 'Memang beda wanginya dibanding kopyor hijau biasa. Layak tunggu pre-order 3 hari.',
+      },
+    ],
   },
   {
     id: 6,
@@ -114,6 +221,8 @@ export const products = [
     priceLabel: 'Kemasan 500g',
     unit: '/pack',
     unitDetail: 'Ideal Kafe & Es',
+    stock: 95,
+    spec: 'Pouch vakum 500g · Potongan serpihan siap campur',
     rating: 4.7,
     reviews: 76,
     badges: [{ label: 'Hemat', variant: 'teal' }],
@@ -124,6 +233,24 @@ export const products = [
     wishlist: false,
     stockStatus: 'available',
     imageLabel: 'Daging Kopyor Flakes',
+    gallery: [
+      { label: 'Daging Kopyor Flakes', caption: 'Serpihan daging kopyor ekonomis untuk topping & isian' },
+      { label: 'Siap Olah Dessert & Es', caption: 'Hemat biaya produksi UMKM tanpa mengorbankan rasa asli' },
+      { label: 'Kemasan Vakum 500g', caption: 'Praktis ditakar untuk kebutuhan harian kedai minuman' },
+    ],
+    originStory:
+      'Merupakan serpihan daging kopyor asli dari bagian pinggir tempurung yang diproses higienis di Sentra Tayu. Memberikan cita rasa dan tekstur kopyor otentik dengan harga lebih efisien bagi pelaku usaha minuman dan pastry.',
+    storageTips:
+      'Simpan beku pada suhu -18°C hingga 6 bulan. Ambil sesuai porsi harian lalu tutup rapat kembali.',
+    sampleReviews: [
+      {
+        id: 'r7',
+        author: 'Warung Es Mbak Yuni',
+        rating: 5,
+        date: '14 Nov 2026',
+        comment: 'Sangat membantu menekan HPP menu es teler kopyor kami, rasanya tetap gurih asli.',
+      },
+    ],
   },
 ]
 
