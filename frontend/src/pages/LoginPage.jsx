@@ -1,24 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'motion/react'
-import { Leaf, Mail, Lock, ArrowRight, Shield, User, X, CheckCircle2 } from 'lucide-react'
+import { motion } from 'motion/react'
+import { Leaf, Mail, Lock, ArrowRight, Shield, User } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import WordReveal from '../components/WordReveal'
-
-const GOOGLE_DEMO_ACCOUNTS = [
-  {
-    id: 'g-sari',
-    name: 'Sari Wulandari',
-    email: 'sari.wulandari@gmail.com',
-    initials: 'SW',
-  },
-  {
-    id: 'g-budi',
-    name: 'Budi Santoso',
-    email: 'budi.santoso@gmail.com',
-    initials: 'BS',
-  },
-]
 
 function GoogleIcon({ className = 'h-4 w-4' }) {
   return (
@@ -44,7 +29,7 @@ function GoogleIcon({ className = 'h-4 w-4' }) {
 }
 
 export default function LoginPage({ mode }) {
-  const { login, loginWithGoogle, registerUser, isAuthenticated, user } = useAuth()
+  const { login, registerUser, isAuthenticated, user } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'
@@ -60,12 +45,7 @@ export default function LoginPage({ mode }) {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const [googleModalOpen, setGoogleModalOpen] = useState(false)
-  const [googleEmail, setGoogleEmail] = useState('')
-  const [googleName, setGoogleName] = useState('')
-  const [googleLoading, setGoogleLoading] = useState(false)
-  const [googleError, setGoogleError] = useState('')
+  const [googleNotice, setGoogleNotice] = useState('')
 
   if (isAuthenticated) {
     return (
@@ -77,12 +57,6 @@ export default function LoginPage({ mode }) {
         <p className="mt-2 text-sm text-gray-500">
           Halo, <strong>{user?.name}</strong> ({user?.email})
         </p>
-        {user?.provider === 'google' && (
-          <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#EBF3EE] px-3 py-1 text-xs font-semibold text-[#14452B]">
-            <GoogleIcon className="h-3.5 w-3.5" />
-            Terhubung via Google
-          </span>
-        )}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
             to="/"
@@ -162,39 +136,14 @@ export default function LoginPage({ mode }) {
     navigate(getRedirectTarget(role), { replace: true })
   }
 
-  const handleGoogleSelect = (account) => {
-    setGoogleError('')
-    setGoogleLoading(true)
-    setTimeout(() => {
-      loginWithGoogle(account)
-      setGoogleLoading(false)
-      setGoogleModalOpen(false)
-      navigate(getRedirectTarget('user'), { replace: true })
-    }, 450)
-  }
-
-  const handleCustomGoogleSubmit = (e) => {
-    e.preventDefault()
-    const trimmedEmail = googleEmail.trim().toLowerCase()
-    if (!trimmedEmail || !trimmedEmail.includes('@')) {
-      setGoogleError('Masukkan email Google yang valid (mis. nama@gmail.com).')
-      return
-    }
-    const derivedName =
-      googleName.trim() ||
-      trimmedEmail
-        .split('@')[0]
-        .replace(/[._-]+/g, ' ')
-        .replace(/\b\w/g, (c) => c.toUpperCase())
-    handleGoogleSelect({
-      name: derivedName,
-      email: trimmedEmail,
-    })
+  const handleGoogleClick = () => {
+    // Placeholder UI: credentials & OAuth flow akan disambungkan ke backend
+    setGoogleNotice('Login dengan Google menunggu integrasi credentials backend.')
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-5 pb-16 pt-6 md:px-8 md:pt-8">
-      <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+    <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-5 md:px-8 md:pt-8">
+      <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div className="hidden lg:block">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#28633d]">Akun</p>
           <WordReveal
@@ -203,7 +152,7 @@ export default function LoginPage({ mode }) {
           />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
             {isRegister
-              ? 'Buat akun untuk menyimpan keranjang, checkout lebih cepat, dan terhubung dengan kebun kopyor Pati. Tersedia opsi Lanjutkan dengan Google.'
+              ? 'Buat akun untuk menyimpan keranjang, checkout lebih cepat, dan terhubung dengan kebun kopyor Pati.'
               : 'Akses katalog, keranjang, dan (untuk admin) dashboard mitra. Saat ini memakai autentikasi demo — backend akan ditambahkan kemudian.'}
           </p>
           <ul className="mt-8 space-y-3 text-sm text-gray-600">
@@ -218,7 +167,7 @@ export default function LoginPage({ mode }) {
                 <Shield className="h-4 w-4" />
               </span>
               {isRegister
-                ? 'Daftar instan dalam 1 klik dengan akun Google'
+                ? 'Opsi Lanjutkan dengan Google siap dihubungkan ke backend'
                 : 'Demo admin: email mengandung "admin"'}
             </li>
           </ul>
@@ -228,10 +177,10 @@ export default function LoginPage({ mode }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_8px_40px_rgba(17,59,36,0.06)] sm:p-8"
+          className="w-full rounded-3xl border border-gray-100 bg-white p-5 shadow-[0_8px_40px_rgba(17,59,36,0.06)] sm:p-8"
         >
           <div className="flex items-center gap-3 lg:hidden">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#14452B] text-white">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#14452B] text-white">
               <Leaf className="h-5 w-5" />
             </span>
             <div>
@@ -251,18 +200,21 @@ export default function LoginPage({ mode }) {
               : 'Lanjutkan dengan Google, isi email, atau gunakan tombol cepat di bawah.'}
           </p>
 
-          {/* Opsi Lanjutkan dengan Google */}
+          {/* Opsi tampilan Lanjutkan dengan Google (menunggu credentials backend) */}
           <button
             type="button"
-            onClick={() => {
-              setGoogleError('')
-              setGoogleModalOpen(true)
-            }}
-            className="mt-5 flex w-full items-center justify-center gap-3 rounded-2xl border border-gray-200 bg-white py-3.5 text-sm font-semibold text-gray-800 shadow-xs transition hover:border-gray-300 hover:bg-[#F7F9F6]"
+            onClick={handleGoogleClick}
+            className="mt-5 flex w-full items-center justify-center gap-2.5 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-xs font-semibold text-gray-800 shadow-xs transition hover:border-gray-300 hover:bg-[#F7F9F6] active:scale-[0.99] sm:py-3.5 sm:text-sm"
           >
-            <GoogleIcon className="h-5 w-5" />
-            Lanjutkan dengan Google
+            <GoogleIcon className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
+            <span className="truncate">Lanjutkan dengan Google</span>
           </button>
+
+          {googleNotice && (
+            <p className="mt-2.5 rounded-xl border border-amber-200 bg-amber-50/80 px-3 py-2 text-center text-[11px] font-medium text-amber-800 sm:text-xs">
+              {googleNotice}
+            </p>
+          )}
 
           <div className="relative my-5">
             <div className="absolute inset-0 flex items-center">
@@ -420,112 +372,6 @@ export default function LoginPage({ mode }) {
           </p>
         </motion.div>
       </div>
-
-      {/* Modal pilih akun Google */}
-      <AnimatePresence>
-        {googleModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-4 backdrop-blur-xs"
-            onClick={() => !googleLoading && setGoogleModalOpen(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 12 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-md overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 shadow-2xl"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="google-dialog-title"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F7F9F6] ring-1 ring-gray-100">
-                    <GoogleIcon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h3 id="google-dialog-title" className="text-base font-bold text-gray-900">
-                      Lanjutkan dengan Google
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                      Pilih akun untuk melanjutkan ke BumiKopyor
-                    </p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  disabled={googleLoading}
-                  onClick={() => setGoogleModalOpen(false)}
-                  className="rounded-full p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
-                  aria-label="Tutup"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-
-              <div className="mt-5 space-y-2">
-                {GOOGLE_DEMO_ACCOUNTS.map((acc) => (
-                  <button
-                    key={acc.id}
-                    type="button"
-                    disabled={googleLoading}
-                    onClick={() => handleGoogleSelect(acc)}
-                    className="flex w-full items-center gap-3 rounded-2xl border border-gray-100 bg-[#F7F9F6] p-3 text-left transition hover:border-[#14452B]/25 hover:bg-[#EBF3EE]/70 disabled:opacity-60"
-                  >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#14452B] text-xs font-bold text-white">
-                      {acc.initials}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-gray-900">{acc.name}</p>
-                      <p className="truncate text-xs text-gray-500">{acc.email}</p>
-                    </div>
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-[#14452B]/60" />
-                  </button>
-                ))}
-              </div>
-
-              <div className="relative my-4">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-100" />
-                </div>
-                <div className="relative flex justify-center text-[11px]">
-                  <span className="bg-white px-2.5 text-gray-400">atau gunakan email Google lain</span>
-                </div>
-              </div>
-
-              <form onSubmit={handleCustomGoogleSubmit} className="space-y-3">
-                <input
-                  type="text"
-                  value={googleName}
-                  onChange={(e) => setGoogleName(e.target.value)}
-                  placeholder="Nama (opsional)"
-                  className="w-full rounded-xl border border-gray-200 bg-[#F7F9F6] px-3.5 py-2.5 text-sm outline-none focus:border-[#14452B] focus:bg-white"
-                />
-                <input
-                  type="email"
-                  value={googleEmail}
-                  onChange={(e) => setGoogleEmail(e.target.value)}
-                  placeholder="emailanda@gmail.com"
-                  className="w-full rounded-xl border border-gray-200 bg-[#F7F9F6] px-3.5 py-2.5 text-sm outline-none focus:border-[#14452B] focus:bg-white"
-                />
-                {googleError && (
-                  <p className="text-xs font-medium text-red-600">{googleError}</p>
-                )}
-                <button
-                  type="submit"
-                  disabled={googleLoading}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#14452B] py-2.5 text-sm font-semibold text-white transition hover:bg-[#113B24] disabled:opacity-60"
-                >
-                  {googleLoading ? 'Menghubungkan ke Google...' : 'Lanjutkan'}
-                </button>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
